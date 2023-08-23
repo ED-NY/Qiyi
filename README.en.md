@@ -1,36 +1,28 @@
-# qiyi_project
+# Qiyi
 
-#### Description
-实训内容
+#### 介绍
+This project is an exercise project that uses SpringBoot+Vue to
+separate the front-end and back-end development, and implements a
+movie playback website front-end page and back-end management page.
 
-#### Software Architecture
-Software architecture description
-
-#### Installation
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### Instructions
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### Contribution
-
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
+#### 软件架构
+SpringBoot+Vue
 
 
-#### Gitee Feature
+#### 安装教程
 
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+1. Install maven and use pom.xml
+2. Install node.js
+3. Use the node.js install vue.js
+4. Download mysql5.7 and create database by qiyi.sql
+
+#### 使用说明
+
+1. Use idea to open the project and run it.
+2. Go to the static directory and run the src/www .js using the node command
+
+
+#### 参与贡献
+
+1.  Liuchunxin
+
