@@ -47,4 +47,12 @@ public class UserController {
         return userService.addUser(name,password);
     }
 
+    /**
+     * 删除，给出管理员（user）的uid进行删除操作
+     * @param uid
+     * @return
+     */
+    @PostMapping("/admin/deleteuser")
+    public boolean deleteUser(int uid){return userService.deleteUser(uid);}
+
 }

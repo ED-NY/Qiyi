@@ -42,4 +42,13 @@ public class UserServiceImp implements UserService{
         }
         return is_add;
     }
+
+    @Override
+    public Boolean deleteUser(int uid) {
+         boolean is_delete = false;
+         if(userMapper.deleteUser(uid)>0){
+             is_delete = true;
+         }
+         return is_delete;
+    }
 }

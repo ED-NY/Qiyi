@@ -14,4 +14,6 @@ public interface UserService {
     List<User> userList();
 
     Boolean addUser(String name,String password);
+
+    Boolean deleteUser(int uid);
 }

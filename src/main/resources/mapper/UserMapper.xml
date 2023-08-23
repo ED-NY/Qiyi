@@ -16,4 +16,8 @@
         insert into user(name,password) values(#{name},#{password})
     </insert>
 
+    <delete id="deleteUser">
+        delete from user where uid=#{uid}
+    </delete>
+
 </mapper>

@@ -16,4 +16,6 @@ public interface UserMapper {
     List<User> queryUserList();
 
     int insertUser(@Param("name")String name,@Param("password")String password);
+
+    int deleteUser(@Param("uid")int uid);
 }
