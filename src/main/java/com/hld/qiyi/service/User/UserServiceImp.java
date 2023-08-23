@@ -21,12 +21,7 @@ public class UserServiceImp implements UserService{
 
     @Override
     public User login(String name, String password) {
-        User user = userMapper.getLogin(name,password);
-        if(user != null){
-            return user;
-        }else{
-            return null;
-        }
+        return userMapper.getLogin(name,password)!=null ? userMapper.getLogin(name,password) : null;
     }
 
     @Override
@@ -36,19 +31,16 @@ public class UserServiceImp implements UserService{
 
     @Override
     public Boolean addUser(String name,String password) {
-        boolean is_add = false;
-        if(userMapper.insertUser(name,password)>0){
-            is_add = true;
-        }
-        return is_add;
+        return userMapper.insertUser(name,password)>0;
     }
 
     @Override
     public Boolean deleteUser(int uid) {
-         boolean is_delete = false;
-         if(userMapper.deleteUser(uid)>0){
-             is_delete = true;
-         }
-         return is_delete;
+         return userMapper.deleteUser(uid)>0;
+    }
+
+    @Override
+    public Boolean changeAdmin(int uid, String name, String password) {
+        return userMapper.changeAdmin(uid,name,password)>0;
     }
 }

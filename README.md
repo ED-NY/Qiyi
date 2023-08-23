@@ -1,6 +1,5 @@
 # Qiyi
 
-#### warn：仅用于个人学习使用！！！
 #### 介绍
 This project is an exercise project that uses SpringBoot+Vue to
 separate the front-end and back-end development, and implements a

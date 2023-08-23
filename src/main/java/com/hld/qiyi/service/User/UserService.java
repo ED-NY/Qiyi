@@ -1,6 +1,7 @@
 package com.hld.qiyi.service.User;
 
 import com.hld.qiyi.pojo.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface UserService {
     Boolean addUser(String name,String password);
 
     Boolean deleteUser(int uid);
+
+    Boolean changeAdmin(int uid,String name,String password);
 }

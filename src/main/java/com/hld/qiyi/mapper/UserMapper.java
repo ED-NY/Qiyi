@@ -3,6 +3,7 @@ package com.hld.qiyi.mapper;
 import com.hld.qiyi.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 /**
@@ -18,4 +19,6 @@ public interface UserMapper {
     int insertUser(@Param("name")String name,@Param("password")String password);
 
     int deleteUser(@Param("uid")int uid);
+
+    int changeAdmin(@Param("uid")int uid,@Param("name") String name,@Param("password")String password);
 }

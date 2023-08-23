@@ -16,6 +16,10 @@
         insert into user(name,password) values(#{name},#{password})
     </insert>
 
+    <update id="changeAdmin">
+        update user set name=#{name},password=#{password} where uid=#{uid}
+    </update>
+
     <delete id="deleteUser">
         delete from user where uid=#{uid}
     </delete>
