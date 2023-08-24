@@ -12,4 +12,6 @@ public class Movie {
     Date pub_data;
     String description;
     double rating;
+    int actor;    //演员信息用于联合查询
+    int category;  //电影分类信息用于联合查询
 }

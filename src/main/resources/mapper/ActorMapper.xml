@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hld.qiyi.mapper.ActorMapper">
+
+    <resultMap id="actorRegion" type="com.hld.qiyi.pojo.Actor">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="birthday" column="birthday"/>
+        <result property="sex" column="sex"/>
+        <result property="description" column="description"/>
+        <result property="pic" column="pic"/>
+
+        <association property="region" javaType="com.hld.qiyi.pojo.Region">
+            <id property="id" column="rid"/>
+            <result property="name" column="rname"/>
+        </association>
+
+        <association property="movie" javaType="com.hld.qiyi.pojo.Movie">
+            <id property="id" column="mid"/>
+            <result property="name" column="mname"/>
+        </association>
+    </resultMap>
+
+<!--    用于查询演员的所有信息列表-->
+    <select id="queryActorList" resultMap="actorRegion">
+        select a.*,r.id rid,r.name rname,m.id mid,m.name mname
+        from actor a,actor_region ar,region r,movie_actor ma,movie m
+        where a.id = ar.actorid and a.id=r.id and m.id = ma.movieid and ma.actorid = a.id
+    </select>
+
+    <select id="queryActor" resultType="com.hld.qiyi.pojo.Actor">
+
+    </select>
+
+    <delete id="delActor">
+
+    </delete>
+
+    <insert id="addActor">
+
+    </insert>
+
+    <update id="alterActor">
+
+    </update>
+
+</mapper>

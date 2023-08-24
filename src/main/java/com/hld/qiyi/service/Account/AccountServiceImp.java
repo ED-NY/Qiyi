@@ -2,10 +2,7 @@ package com.hld.qiyi.service.Account;
 
 import com.hld.qiyi.mapper.AccountMapper;
 import com.hld.qiyi.pojo.Account;
-import com.hld.qiyi.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisKeyValueTemplate;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +16,6 @@ import java.util.List;
 public class AccountServiceImp implements AccountService{
     @Autowired
     private AccountMapper accountMapper;
-    @Autowired
-    private RedisUtils redisUtils;
 
     @Override
     public List<Account> getAccountList() {

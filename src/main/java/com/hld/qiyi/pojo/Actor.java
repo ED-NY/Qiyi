@@ -2,15 +2,17 @@ package com.hld.qiyi.pojo;
 
 import lombok.Data;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
 @Data
 public class Actor {
-    int id;
-    String name;
-    Date birthday;
-    String sex;
-    String description;
-    String pic;
-    //演员的其他属性使用redis管理，例如粉丝属性，主页访问流量等
+    private int id;
+    private String name;
+    private Date birthday;
+    private String sex;
+    private String description;
+    private String pic;
+    private Region region;  //演员区域信息用于联合查询
+    private Movie movie;   //主演电影，分数最高
 }
