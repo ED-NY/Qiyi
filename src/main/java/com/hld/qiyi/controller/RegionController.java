@@ -22,7 +22,7 @@ public class RegionController {
     /**
      * 查询地区列表
      * 测试成功
-     * @return
+     * @return list
      */
     @PostMapping("/region/getregionlist")
     public List<Region> getRegionList(){
@@ -32,8 +32,8 @@ public class RegionController {
     /**
      * 根据id删除指定地址信息
      * 测试成功
-     * @param id
-     * @return
+     * @param id  id
+     * @return bool
      */
     @PostMapping("/region/regiondelbyid")
     public boolean delRegion(int id){
@@ -43,8 +43,8 @@ public class RegionController {
     /**
      * 添加新的地址信息
      * 测试成功
-     * @param name
-     * @return
+     * @param name 姓名
+     * @return bool
      */
     @PostMapping("/region/regionadd")
     public boolean addRegion(String name){

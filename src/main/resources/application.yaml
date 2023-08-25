@@ -1,5 +1,28 @@
 server :
   port : 8080
 
+spring:
+  datasource:
+    username: root
+    password: 202105A231
+    url: jdbc:mysql://localhost:3306/qiyi
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat,wall,log4j
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    encoding: UTF-8
+    suffix: .html
+    mode: HTML
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  redis:
+    host: 127.0.0.1
+    port: 6379
 
+mybatis:
+  type-aliases-package: com.example.learn.pojo
+  mapper-locations: classpath:mapper/*.xml
 

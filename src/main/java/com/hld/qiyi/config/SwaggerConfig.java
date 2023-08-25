@@ -10,7 +10,11 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
-
+/**
+ * @Author: Liuchunxin
+ * @Date: 2023-08-21-15:16
+ * @Description: swagger配置文件
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {

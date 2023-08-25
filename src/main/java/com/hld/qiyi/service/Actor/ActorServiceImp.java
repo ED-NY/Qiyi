@@ -12,26 +12,61 @@ import java.util.List;
 /**
  * @Author: Liuchunxin
  * @Date: 2023-08-23-16:16
- * @Description:
+ * @Description:演员管理服务层实现
  */
 @Service
 public class ActorServiceImp implements ActorService{
     @Autowired
     private ActorMapper actorMapper;
-//    @Autowired
-//    private RegionMapper regionMapper;
 
     @Override
-    public List<Actor> queryActorList() {
-//        List<Actor> actors_temp = actorMapper.queryActorList();
-//        List<Actor> actors = null;
-//        for(Actor actor : actors_temp){
-//            if(actor.getRegion().getId() == regionMapper.queryRegionById(actor.getRegion().getId()).getId()){
-//                actor.setRegion(regionMapper.queryRegionById(actor.getRegion().getId()));
-//            }
-//            actors.add(actor);
-//        }
-//        return actors;
-        return actorMapper.queryActorList();
+    public List<Actor> queryActorList(String name,String sex,String rname,String mname) {
+        return actorMapper.queryActorList(name,sex,rname,mname);
     }
+
+    @Override
+    public boolean delActor(int id) {
+        return actorMapper.delActor(id)>0;
+    }
+
+    @Override
+    public boolean delActorAndRegion(int actorid) {
+        return actorMapper.delActorAndRegion(actorid)>0;
+    }
+
+    @Override
+    public boolean delActorAndMovie(int actorid) {
+        return actorMapper.delActorAndMovie(actorid)>0;
+    }
+
+    @Override
+    public boolean addActor(String name, String birthday, String sex, String description, String pic) {
+        return actorMapper.addActor(name,birthday,sex,description,pic)>0;
+    }
+
+    @Override
+    public boolean addActorWithRegion(int actorid, int regionid) {
+        return actorMapper.addActorWithRegion(actorid,regionid)>0;
+    }
+
+    @Override
+    public boolean addActorMovieUnion(int actorid) {
+        return actorMapper.addActorMovieUnion(actorid)>0;
+    }
+
+    @Override
+    public boolean alterActor(int id, String name, String birthday, String sex, String description, String pic) {
+        return actorMapper.alterActor(id,name,birthday,sex,description,pic)>0;
+    }
+
+    @Override
+    public boolean alterActorRegion(int actorid, int regionid) {
+        return actorMapper.alterActorRegion(actorid,regionid)>0;
+    }
+
+    @Override
+    public int getActorId(String name) {
+        return actorMapper.getActorId(name);
+    }
+
 }

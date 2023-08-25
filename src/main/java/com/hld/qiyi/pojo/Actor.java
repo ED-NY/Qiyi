@@ -14,5 +14,5 @@ public class Actor {
     private String description;
     private String pic;
     private Region region;  //演员区域信息用于联合查询
-    private Movie movie;   //主演电影，分数最高
+    private List<Movie> movies;   //主演电影，分数最高
 }

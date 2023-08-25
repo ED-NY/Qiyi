@@ -1,7 +1,8 @@
 package com.hld.qiyi.pojo;
 
 import lombok.Data;
-import java.util.Date;
+import java.sql.Date;
+import java.util.List;
 
 @Data
 public class Movie {
@@ -9,9 +10,10 @@ public class Movie {
     String name;
     String director;
     int time_length;
-    Date pub_data;
+    Date pub_date;
     String description;
-    double rating;
-    int actor;    //演员信息用于联合查询
-    int category;  //电影分类信息用于联合查询
+    Double rating;
+    String pic;
+    List<Actor> actors;    //演员信息用于联合查询
+    List<Category> categorys;  //电影分类信息用于联合查询
 }

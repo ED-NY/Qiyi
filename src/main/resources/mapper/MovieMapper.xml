@@ -4,4 +4,122 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hld.qiyi.mapper.MovieMapper">
 
+    <resultMap id="MovieCategoryActor" type="com.hld.qiyi.pojo.Movie">
+
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="director" column="director"/>
+        <result property="time_length" column="time_length"/>
+        <result property="pub_data" column="pub_data"/>
+        <result property="description" column="description"/>
+        <result property="rating" column="rating"/>
+
+        <collection property="actors" ofType="com.hld.qiyi.pojo.Actor">
+            <id property="id" column="aid"/>
+            <result property="name" column="aname"/>
+        </collection>
+        <collection property="categorys" ofType="com.hld.qiyi.pojo.Category">
+            <id property="id" column="cid"/>
+            <result property="catname" column="cname"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="queryMovieList" resultMap="MovieCategoryActor">
+        select m.*,a.id aid,a.name aname,c.id cid, c.catname cname
+        from actor a,movie_actor ma,movie_category mc,category c,movie m
+        <where>
+                a.id = ma.actorid and m.id = ma.movieid and m.id = mc.movieid and mc.categoryid = c.id
+            <if test="name!=null and name!=''">
+                and m.name like concat('%',#{name},'%')
+            </if>
+            <if test="director!=null and director!=''">
+                and m.director like concat('%',#{director},'%')
+            </if>
+            <if test="rating!=null">
+                and m.rating > #{rating}
+            </if>
+            <if test="pub_date!=null">
+                and m.pub_date > #{pub_date}
+            </if>
+            <if test="aname!=null and aname!=''">
+                and a.name like concat('%',#{aname},'%')
+            </if>
+            <if test="cname!=null and cname!=''">
+                and c.catname like concat('%',#{cname},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="getIdByName" resultType="int">
+        select id
+        from movie
+        where name=#{name}
+    </select>
+
+    <insert id="addMovie" parameterType="com.hld.qiyi.pojo.Movie">
+        insert into movie(name,director,time_length,pub_date,description,rating,pic)
+        values(#{name},#{director},#{time_length},#{pub_date},#{description},#{rating},#{pic})
+    </insert>
+
+    <insert id="addMovieActor">
+        insert into movie_actor(movieid,actorid)
+        values(#{movieid},#{actorid})
+    </insert>
+
+    <insert id="addMovieCategory">
+        insert into movie_category(movieid,categoryid)
+        values(#{movieid},#{categoryid})
+    </insert>
+
+    <update id="altMovieBase" parameterType="com.hld.qiyi.pojo.Movie">
+        update movie
+        <set>
+            <if test="name!=null and name!=''">
+                name=#{name},
+            </if>
+            <if test="director!=null and director!=''">
+                director=#{director},
+            </if>
+            <if test="time_length!=null and time_length!=''">
+                time_length=#{time_length},
+            </if>
+            <if test="pub_date!=null">
+                pub_date=#{pub_date},
+            </if>
+            <if test="description!=null and description!=''">
+                description=#{description},
+            </if>
+            <if test="rating>-1">
+                rating=#{rating},
+            </if>
+            <if test="pic!=null and pic!=''">
+                pic=#{pic}
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <update id="altMovieActor">
+        update movie_actor set actorid = #{actorid} where movieid = #{movieid}
+    </update>
+
+    <update id="altMovieCategory">
+        update movie_category set categoryid = #{categoryid} where movieid = #{movieid}
+    </update>
+
+    <delete id="delMovieBase">
+        delete from movie where id=#{id}
+    </delete>
+
+    <delete id="delMovieAndActor">
+        delete from movie_actor where movieid=#{movieid}
+    </delete>
+
+    <delete id="delMovieAndCategory">
+        delete from movie_category where movieid=#{movieid}
+    </delete>
+
 </mapper>

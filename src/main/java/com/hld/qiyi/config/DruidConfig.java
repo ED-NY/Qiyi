@@ -12,7 +12,11 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * @Author: Liuchunxin
+ * @Date: 2023-08-21-15:16
+ * @Description: 德鲁伊配置文件
+ */
 @Configuration
 public class DruidConfig {
     @ConfigurationProperties(prefix = "spring.datasource")

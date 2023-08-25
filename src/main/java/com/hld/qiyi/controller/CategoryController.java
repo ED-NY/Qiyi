@@ -20,7 +20,7 @@ public class CategoryController {
 
     /**
      *获取电影类型列表
-     * @return
+     * @return List
      */
     @PostMapping("/category/getcategorylist")
     public List<Category> getCategoryList(){
@@ -29,8 +29,8 @@ public class CategoryController {
 
     /**
      *根据所给id删除指定电影分类
-     * @param id
-     * @return
+     * @param id id
+     * @return bool
      */
     @PostMapping("/category/categorydel")
     public boolean delCategory(int id){
@@ -39,8 +39,8 @@ public class CategoryController {
 
     /**
      *创建新的电影类型
-     * @param catname
-     * @return
+     * @param catname 类型名
+     * @return bool
      */
     @PostMapping("/category/categoryadd")
     public boolean addCategory(String catname){

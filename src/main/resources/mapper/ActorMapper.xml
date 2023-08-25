@@ -17,33 +17,91 @@
             <result property="name" column="rname"/>
         </association>
 
-        <association property="movie" javaType="com.hld.qiyi.pojo.Movie">
+        <collection property="movies" ofType="com.hld.qiyi.pojo.Movie">
             <id property="id" column="mid"/>
             <result property="name" column="mname"/>
-        </association>
+        </collection>
     </resultMap>
 
 <!--    用于查询演员的所有信息列表-->
     <select id="queryActorList" resultMap="actorRegion">
         select a.*,r.id rid,r.name rname,m.id mid,m.name mname
         from actor a,actor_region ar,region r,movie_actor ma,movie m
-        where a.id = ar.actorid and a.id=r.id and m.id = ma.movieid and ma.actorid = a.id
+        <where>
+            a.id = ar.actorid and ar.regionid = r.id and m.id = ma.movieid and ma.actorid = a.id
+            <if test="name!=null and name!=''">
+                and a.name like concat('%',#{name},'%')
+            </if>
+            <if test="sex!=null and sex!=''">
+                and sex=#{sex}
+            </if>
+            <if test="rname!=null and rname!=''">
+                and r.name like concat('%',#{rname},'%')
+            </if>
+            <if test="mname!=null and mname!=''">
+                and m.name like concat('%',#{mname},'%')
+            </if>
+        </where>
     </select>
 
-    <select id="queryActor" resultType="com.hld.qiyi.pojo.Actor">
-
-    </select>
-
+<!--    同步删除演员以及演员地址连接表，电影连接表中的内容-->
     <delete id="delActor">
-
+        delete from actor where id=#{id}
     </delete>
 
-    <insert id="addActor">
+    <delete id="delActorAndRegion">
+        delete from actor_region where actorid=#{actorid}
+    </delete>
 
+    <delete id="delActorAndMovie">
+        delete from movie_actor where actorid=#{actorid};
+    </delete>
+<!--    -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;分割线&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+    <insert id="addActor">
+        insert into actor(name,birthday,sex,description,pic) values(#{name},#{birthday},#{sex},#{description},#{pic})
+    </insert>
+
+    <insert id="addActorWithRegion">
+        insert into actor_region(actorid,regionid) values(#{actorid},#{regionid})
+    </insert>
+
+    <insert id="addActorMovieUnion">
+        insert into movie_actor(movieid,actorid) values(5,#{actorid})
     </insert>
 
     <update id="alterActor">
-
+        update actor
+        <set>
+            <if test="name!=null and name!=''">
+                name=#{name},
+            </if>
+            <if test="birthday!=null and birthday!=''">
+                birthday=#{birthday},
+            </if>
+            <if test="sex!=null and sex!=''">
+                sex=#{sex},
+            </if>
+            <if test="description!=null and description!=''">
+                description=#{description},
+            </if>
+            <if test="pic!=null and pic!=''">
+                pic=#{pic}
+            </if>
+        </set>
+        <where>id=#{id}</where>
     </update>
+
+    <update id="alterActorRegion">
+        update actor_region
+        <set>regionid=#{regionid}</set>
+        <where>actorid=#{actorid}</where>
+    </update>
+
+    <select id="getActorId" resultType="int">
+        select id
+        from actor
+        where name=#{name}
+    </select>
 
 </mapper>

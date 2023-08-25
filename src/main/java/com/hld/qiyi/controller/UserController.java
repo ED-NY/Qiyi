@@ -23,9 +23,9 @@ public class UserController {
     /**
      *登录，通过post请求传入两个参数，登录成功返回user对象否则返回null
      * 验证通过
-     * @param name
-     * @param password
-     * @return
+     * @param name  账户
+     * @param password 密码
+     * @return User
      */
     @PostMapping("/admin/login")
     public User adminLogin(String name,String password){
@@ -40,9 +40,9 @@ public class UserController {
     /**
      * 注册，返回true注册成功，false注册失败
      * 验证通过
-     * @param name
-     * @param password
-     * @return
+     * @param name 姓名
+     * @param password 密码
+     * @return bool
      */
     @PostMapping("/admin/adduser")
     public boolean addUser(String name,String password){
@@ -52,8 +52,8 @@ public class UserController {
     /**
      * 删除，给出管理员（user）的uid进行删除操作
      * 验证通过
-     * @param uid
-     * @return
+     * @param uid 账户uid
+     * @return bool
      */
     @PostMapping("/admin/deleteuser")
     public boolean deleteUser(int uid){return userService.deleteUser(uid);}
@@ -61,10 +61,10 @@ public class UserController {
     /**
      * 更新管理员账户信息
      * 验证通过
-     * @param uid
-     * @param name
-     * @param password
-     * @return
+     * @param uid 账户uid
+     * @param name 姓名
+     * @param password 密码
+     * @return bool
      */
     @PostMapping("/admin/changadmin")
     public boolean changeAdmin(int uid,String name,String password){return  userService.changeAdmin(uid,name,password);}
