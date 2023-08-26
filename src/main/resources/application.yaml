@@ -1,6 +1,9 @@
 server :
   port : 8080
 
+web:
+  upload-path: D:/images   #图路径
+
 spring:
   datasource:
     username: root
@@ -21,6 +24,9 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
+  resources:
+    static-locations: file:${web.upload-path},classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+
 
 mybatis:
   type-aliases-package: com.example.learn.pojo
